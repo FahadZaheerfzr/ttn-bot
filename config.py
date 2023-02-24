@@ -1,7 +1,7 @@
 import json
 from web3 import Web3
 
-BOT_TOKEN = "5959869028:AAEoH0A3LsFUryD83MOMCobQOQ5TFRdAu4w"
+BOT_TOKEN = "5908751520:AAHybX7Pb_up-_2j0MhFieJOmX4bPP6rvEc"
 CATEGORIES = ["Business", "Crypto", "Finance", "Sports", "Media", "Influencer", "Actor", "Baking", "Cooking", "Nature", "DIY", "Celebrity"]
 RPC_ADDRESS = "https://rpc.ankr.com/bsc_testnet_chapel"
 PAYMENT_CONTRACT = Web3.toChecksumAddress("0xF300883543a62fe08e2bD1AaABAEe2dAd3Aa3d19") #Web3.toChecksumAddress("0x3fba9c7f943068064de77394016dc0995ddea228")
