@@ -1,0 +1,4 @@
+DateTime==5.0
+pymongo==4.3.3
+pyTelegramBotAPI==4.9.0
+web3==5.31.3
