@@ -11,6 +11,7 @@ from components import start
 import pprint
 web3 = Web3(Web3.HTTPProvider(config.RPC_ADDRESS))
 
+
 def middlewareHandler(message: types.CallbackQuery, bot: TeleBot):
     bot.delete_message(message.from_user.id, message.message.message_id)
     chat_id = message.data.split("_")[1]
@@ -20,15 +21,19 @@ def middlewareHandler(message: types.CallbackQuery, bot: TeleBot):
     try:
         chat_admins = bot.get_chat_administrators(chat_id)
     except:
-        bot.reply_to(message, "Failed to fetch chat admins to verify you are one of them, please make the bot admin and try again")
-    
+        bot.reply_to(
+            message, "Failed to fetch chat admins to verify you are one of them, please make the bot admin and try again")
+
     is_admin = False
     for x in chat_admins:
-        if int(x.user.id) == int(message.from_user.id): is_admin = True
-    if not is_admin: return bot.reply_to(message, "You are not admin!")
+        if int(x.user.id) == int(message.from_user.id):
+            is_admin = True
+    if not is_admin:
+        return bot.reply_to(message, "You are not admin!")
 
     category = "❌ Not Set"
-    if "category" in group_info: category = group_info['category']
+    if "category" in group_info:
+        category = group_info['category']
 
     total_subs = DB['memberships'].count_documents({"chat_id": int(chat_id)})
 
@@ -61,6 +66,7 @@ def middlewareHandler(message: types.CallbackQuery, bot: TeleBot):
         reply_markup=keyboards.settingPrivateMarkup(chat_id)
     )
 
+
 def categoryHandler(message: types.CallbackQuery, bot: TeleBot):
     # print(message)
     bot.delete_message(message.from_user.id, message.message.message_id)
@@ -70,23 +76,27 @@ def categoryHandler(message: types.CallbackQuery, bot: TeleBot):
     try:
         chat_admins = bot.get_chat_administrators(chat_id)
     except:
-        bot.reply_to(message, "Failed to fetch chat admins to verify you are one of them, please make the bot admin and try again")
-    
+        bot.reply_to(
+            message, "Failed to fetch chat admins to verify you are one of them, please make the bot admin and try again")
+
     is_admin = False
     for x in chat_admins:
-        if int(x.user.id) == int(message.from_user.id): is_admin = True
-    if not is_admin: return bot.reply_to(message, "You are not admin!")
+        if int(x.user.id) == int(message.from_user.id):
+            is_admin = True
+    if not is_admin:
+        return bot.reply_to(message, "You are not admin!")
 
     category = "❌ Not Set"
-    if "category" in group_info: category = group_info['category']
+    if "category" in group_info:
+        category = group_info['category']
 
     text_to_send = f"""
 <b>👥 Community Details:</b>
 <i>• Group Name:|</i> {group_info['name']}
 <i>• Category:|</i> {category}
 
-Choose Category below :
 
+<i>Click on the right category that fits your private community. This data is saved for our website search engine in which communities and fans are able to locate and indentify private communities.</i>
     """
     bot.send_message(
         message.message.chat.id,
@@ -94,6 +104,7 @@ Choose Category below :
         parse_mode='HTML',
         reply_markup=keyboards.settingCategoryMarkup(chat_id)
     )
+
 
 def updateCategoryHandler(message: types.CallbackQuery, bot: TeleBot):
     bot.delete_message(message.from_user.id, message.message.message_id)
@@ -104,18 +115,21 @@ def updateCategoryHandler(message: types.CallbackQuery, bot: TeleBot):
     try:
         chat_admins = bot.get_chat_administrators(chat_id)
     except:
-        bot.reply_to(message, "Failed to fetch chat admins to verify you are one of them, please make the bot admin and try again")
-    
+        bot.reply_to(
+            message, "Failed to fetch chat admins to verify you are one of them, please make the bot admin and try again")
+
     is_admin = False
     for x in chat_admins:
-        if int(x.user.id) == int(message.from_user.id): is_admin = True
-    if not is_admin: return bot.reply_to(message, "You are not admin!")
+        if int(x.user.id) == int(message.from_user.id):
+            is_admin = True
+    if not is_admin:
+        return bot.reply_to(message, "You are not admin!")
 
     DB['groups'].update_one(
         {"_id": int(chat_id)},
         {"$set": {"category": selected_category}}
     )
-   
+
     text_to_send = f"""
 <b>Categories Successfully Updated </b>
     """
@@ -126,44 +140,52 @@ def updateCategoryHandler(message: types.CallbackQuery, bot: TeleBot):
         reply_markup=keyboards.backCommunityMarkup(chat_id)
     )
 
-def groupNameHandler(message: types.CallbackQuery, bot:TeleBot):
+
+def groupNameHandler(message: types.CallbackQuery, bot: TeleBot):
     bot.delete_message(message.from_user.id, message.message.message_id)
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+    markup = types.ReplyKeyboardMarkup(
+        resize_keyboard=True, one_time_keyboard=True)
     markup.add("cancel")
     chat_id = message.data.split(" ")[1]
     group_info = DB['groups'].find_one({"_id": int(chat_id)})
-    
+
     try:
         chat_admins = bot.get_chat_administrators(chat_id)
     except:
-        bot.reply_to(message, "Failed to fetch chat admins to verify you are one of them, please make the bot admin and try again")
-    
+        bot.reply_to(
+            message, "Failed to fetch chat admins to verify you are one of them, please make the bot admin and try again")
+
     is_admin = False
     for x in chat_admins:
-        if int(x.user.id) == int(message.from_user.id): is_admin = True
-    if not is_admin: return bot.reply_to(message, "You are not admin!")
-   
-
+        if int(x.user.id) == int(message.from_user.id):
+            is_admin = True
+    if not is_admin:
+        return bot.reply_to(message, "You are not admin!")
 
     text_to_send = f"""
 <b>Current Group Name: {group_info["name"]}</b> 
 <b>Enter the name of your community below. This data is saved for our website search engine in which communities and fans are able to locate and indentify your private Group: </b>
 
     """
-    bot.send_message(message.from_user.id, text_to_send, parse_mode='HTML', reply_markup=markup)
-    bot.register_next_step_handler(message.message, updateGroupNameHandlerCallback, bot, args=chat_id)
+    bot.send_message(message.from_user.id, text_to_send,
+                     parse_mode='HTML', reply_markup=markup)
+    bot.register_next_step_handler(
+        message.message, updateGroupNameHandlerCallback, bot, args=chat_id)
 
 
-def updateGroupNameHandlerCallback(message: types.Message, bot:TeleBot, args):
+def updateGroupNameHandlerCallback(message: types.Message, bot: TeleBot, args):
     # print(args)
     name = message.text
-    if name.lower() == "cancel": return start.start(message, bot)
+    if name.lower() == "cancel":
+        return start.start(message, bot)
 
     if (len(name) < 5):
-        bot.register_next_step_handler(message, updateGroupNameHandlerCallback, bot, args)
+        bot.register_next_step_handler(
+            message, updateGroupNameHandlerCallback, bot, args)
         return bot.send_message(message.chat.id, "<b>Invalid Group Name, Please Try Again</b>", parse_mode='HTML')
 
     DB['groups'].update_one({"_id": int(args)}, {"$set": {"name": name}})
     bot.set_chat_title(int(args), name)
-    bot.send_message(message.chat.id, "<b>Group Name Updated Successfully</b>", parse_mode='HTML')
+    bot.send_message(
+        message.chat.id, "<b>Group Name Updated Successfully</b>", parse_mode='HTML')
     return start.start(message, bot)
