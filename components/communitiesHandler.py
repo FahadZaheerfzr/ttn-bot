@@ -147,7 +147,7 @@ def groupNameHandler(message: types.CallbackQuery, bot:TeleBot):
 
     text_to_send = f"""
 <b>Current Group Name: {group_info["name"]}</b> 
-<b>Insert new Group Name Below :</b>
+<b>Enter the name of your community below. This data is saved for our website search engine in which communities and fans are able to locate and indentify your private Group: </b>
 
     """
     bot.send_message(message.from_user.id, text_to_send, parse_mode='HTML', reply_markup=markup)

@@ -8,15 +8,16 @@ def settingPrivateMarkup(chat_id):
         types.InlineKeyboardButton(text="🎉 Set One Time Entry", callback_data=f"fees_p_{chat_id}"),
     )
     markup.add(
+        types.InlineKeyboardButton(text="🗂 Set Category", callback_data=f"category {chat_id}"),
+        types.InlineKeyboardButton(text="📝 Set Group Name", callback_data=f"groupname {chat_id}"),
+    )
+    markup.add(
         types.InlineKeyboardButton(text="💵 Set Owner Wallets", callback_data=f"setownerwallet {chat_id}")
     )
     markup.add(
         types.InlineKeyboardButton(text="🌐 Portal Link", callback_data=f"portal {chat_id}")
     )
-    markup.add(
-        types.InlineKeyboardButton(text="🗂 Set Category", callback_data=f"category {chat_id}"),
-        types.InlineKeyboardButton(text="📝 Set Group Name", callback_data=f"groupname {chat_id}"),
-    )
+
     return markup
 
 def settingCategoryMarkup(chat_id):
