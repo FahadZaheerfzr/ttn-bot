@@ -17,5 +17,5 @@ def register(message: types.Message, bot: TeleBot):
         })
         bot.reply_to(message, "Group Registered, Use /help to manage it")
     except:
-        bot.reply_to(message, "Group Already Registered, Use /help to manage it")
+        bot.reply_to(message, "This community is already registered. Please use /setting to configure your community.")
     

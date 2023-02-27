@@ -1,5 +1,5 @@
 import config
-from telebot import TeleBot, types, util, apihelper
+from telebot import TeleBot, types, util
 from components import start, register, help, ownerHandler, communitiesHandler, change, buyPlan, pay, setOwnerWallet, settings, portal, userMainHandler, groupMainHandler
 from components.database import DB
 bot = TeleBot(config.BOT_TOKEN, parse_mode='HTML')
@@ -43,6 +43,8 @@ def my_chat_m(message: types.ChatMemberUpdated):
         bot.send_message(message.chat.id,"Config Message") # Welcome message, if bot was added to group
 
 
-
+me = bot.get_me()
+print(me.username)
+print("Bot is running")
 bot.infinity_polling(allowed_updates=util.update_types)
 

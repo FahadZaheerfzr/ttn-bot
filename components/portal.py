@@ -50,5 +50,5 @@ def portalStart(message: types.CallbackQuery, bot: TeleBot):
         caption="Portal Link: {}".format(f"https://t.me/{bot.get_me().username}?start={chat_id}"),
         reply_markup=types.ReplyKeyboardRemove()
     )
-    bot.send_message(message.message.chat.id, "You can use this message to invite members!")
+    bot.send_message(message.message.chat.id, "Send the message above to a channel in order to create a public portal, or share the link with your community on other social media outlets.")
     backSettings(message, bot, chat_id)

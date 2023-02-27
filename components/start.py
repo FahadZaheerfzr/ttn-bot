@@ -72,7 +72,7 @@ def start(message: types.Message, bot: TeleBot):
 
 
     text_to_send = f"""
-<i>Welcome to your personal TeleTreon Account!</i>
+<i>Welcome to your personal $TTN Account!</i>
 
 <i>• Email:|</i> {"✅ Set" if "email" in userInfo else "❌ Not Set"}
 <i>• Telegram Notifications:|</i> {"✅ Unmuted" if "tg_not" in userInfo else "🔇Muted"}
@@ -144,7 +144,7 @@ def startNoReply(message: types.Message, bot: TeleBot):
 
 
     text_to_send = f"""
-<i>Welcome to your personal TeleTreon Account!</i>
+<i>Welcome to your personal $TTN Account!</i>
 
 <i>• Email:|</i> {"✅ Set" if "email" in userInfo else "❌ Not Set"}
 <i>• Telegram Notifications:|</i> {"✅ Unmuted" if "tg_not" in userInfo else "🔇Muted"}
@@ -189,7 +189,7 @@ def joinStart(message: types.Message, bot: TeleBot):
     if member :
         return bot.send_message(message.chat.id, f"""
 <i>Welcome to {info['name']}
-You're Already subscribe to this group.</i>
+You're already subscribed to this community.</i>
 
  Group Link: {invite_link.invite_link}
 """, parse_mode='HTML')

@@ -53,7 +53,7 @@ def buyPlan(message: types.CallbackQuery, bot: TeleBot):
     user_info = DB['users'].find_one({"_id": message.from_user.id})
 
     if not user_info:
-        return bot.send_message(message.message.chat.id, "Please first register with /start")
+        return bot.send_message(message.message.chat.id, "You don't have a $TTN account yet. Use /start to configure your account and try again.")
 
     bnb_balance = web3.eth.get_balance(user_info['address']) / 10 ** 18
     ttn_contract = web3.eth.contract(address=web3.toChecksumAddress(config.TTN_CONTRACT), abi=config.TTN_CONTRACT_ABI)
