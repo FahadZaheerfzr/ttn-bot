@@ -271,7 +271,7 @@ def walletHandler(message: types.CallbackQuery, bot: TeleBot):
 <i>Deposit funds to enter private communities. Keep in mind that you always leave some BNB Bep-20 in your wallet in order to do transactions on the blockchain. (Gas fee)
 ❌ Deposit only.
 </i>
-<i>• 💵 Bep-20 Wallet:|</i> ```{userInfo['address']}```
+<i>• 💵 Bep-20 Wallet:|</i> {userInfo['address']}
 
 <i>• BNB:|</i> {round(bnb_balance, 4)}
 <i>• TTN:|</i> {ttn_balance}
