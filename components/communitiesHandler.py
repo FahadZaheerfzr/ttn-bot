@@ -38,7 +38,7 @@ def middlewareHandler(message: types.CallbackQuery, bot: TeleBot):
     total_subs = DB['memberships'].count_documents({"chat_id": int(chat_id)})
 
     text_to_send = f"""
-<i>Welcome to your private community control panel.</i>
+<i>Welcome to your $TTN Private Community Control Panel.</i>
 
 <b>👥 Community Details:</b>
 <i>• Group Name:|</i> {group_info['name']}
@@ -51,7 +51,7 @@ def middlewareHandler(message: types.CallbackQuery, bot: TeleBot):
 <i>• Total Earned:|</i> ${group_info['total_earn']}
 
 <b>💵 Current Owner Wallets:</b>
-<i>• BNB/TTN/BUSD:|</i> <code>{owner_info['owner_wallet'] if "owner_wallet" in owner_info else "❌ Not Set"}</code>
+<i>• Bep-20:|</i> <code>{owner_info['owner_wallet'] if "owner_wallet" in owner_info else "❌ Not Set"}</code>
     """
 
 #     text_to_send = f"""

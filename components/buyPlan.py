@@ -44,11 +44,12 @@ def buyPlan(message: types.CallbackQuery, bot: TeleBot):
 
     markup = types.InlineKeyboardMarkup()
     markup.add(
-        types.InlineKeyboardButton(text="Pay With BNB", callback_data=f"pay {order_id} bnb"),
-        types.InlineKeyboardButton(text="Pay With TTN", callback_data=f"pay {order_id} ttn"),
+        types.InlineKeyboardButton(text="BNB (Bep-20)", callback_data=f"pay {order_id} bnb"),
+        types.InlineKeyboardButton(text="TTN (Bep-20)", callback_data=f"pay {order_id} ttn"),
     )
     markup.add(
-        types.InlineKeyboardButton(text="Pay With BUSD", callback_data=f"pay {order_id} busd")
+        types.InlineKeyboardButton(text="💵 Your Wallets", callback_data="main_wallet"),
+        types.InlineKeyboardButton(text="USDT (Bep-20)", callback_data=f"pay {order_id} busd")
     )
     user_info = DB['users'].find_one({"_id": message.from_user.id})
 
@@ -66,13 +67,15 @@ def buyPlan(message: types.CallbackQuery, bot: TeleBot):
 
     text_to_send = f"""
 <b>Method accepted, Invoice Generated.
-{"🗓" if payment_type == "monthly" else "🎉"} {payment_type.capitalize()}:| ${info['fees'][payment_type]}</b>
+{"🗓 Monthly Fee" if payment_type == "monthly" else "🎉 One Time Entry Fee"} :| ${info['fees'][payment_type]}</b>
 
 __
 <i>• Amount in BNB:|</i> {round(info['fees'][payment_type] / prices['bnb_price'], 4)}
 <i>• Amount in TTN:|</i> {round(info['fees'][payment_type] / prices['ttn_price'], 4)}
 <i>• Amount in BUSD:|</i> {round(info['fees'][payment_type] / 1, 4)}
-*The price of BNB/ TTN might change when transaction is delayed due the volatility of the markets.
+__
+*The prices of certain Cryptocurrencies might change when a transaction is delayed due the volatility of the markets.
+
 
 <b>Wallet Info</b>
 <i>Address:</i> {user_info['address']}
