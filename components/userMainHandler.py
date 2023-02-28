@@ -211,7 +211,7 @@ def communitiesHandler(message: types.CallbackQuery, bot: TeleBot):
             text="🔙 Back To Menu", callback_data="main_backToMenu"),
     )
 
-    if communities.count() == 0:
+    if communities:
         text_to_send = f"""
             <i>You currently don't have private communities. Add the bot to your private community and configure the chat.</i>
             """
