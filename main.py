@@ -40,7 +40,7 @@ def my_chat_m(message: types.ChatMemberUpdated):
     old = message.old_chat_member
     new = message.new_chat_member
     if new.status == "member":
-        bot.send_message(message.chat.id,"Config Message") # Welcome message, if bot was added to group
+        bot.send_message(message.chat.id,"This private community is not registered yet, please use /register to register your community. Once registered, use /setting to configure the community settings.") # Welcome message, if bot was added to group
 
 
 me = bot.get_me()

@@ -12,40 +12,49 @@ def isNumber(num):
         return False
 
 def backSettings(message: types.Message, bot: TeleBot, chat_id):
+    commmand, info = message.text.split(" ")
+    info_text, chat_id = info.split("_")
+
     group_info = DB['groups'].find_one({"_id": int(chat_id)})
     owner_info = DB['users'].find_one({"_id": group_info['owner']})
 
     try:
         chat_admins = bot.get_chat_administrators(chat_id)
     except:
-        bot.send_message(message.chat.id, "Failed to fetch chat admins to verify you are one of them, please make the bot admin and try again")
+        bot.reply_to(message, "Failed to fetch chat admins to verify you are one of them, please make the bot admin and try again")
     
     is_admin = False
     for x in chat_admins:
         if int(x.user.id) == int(message.from_user.id): is_admin = True
     if not is_admin: return bot.reply_to(message, "You are not admin!")
 
-    markup = types.InlineKeyboardMarkup()
-    markup.add(
-        types.InlineKeyboardButton(text="Set Monthly Fees", callback_data=f"fees_m_{chat_id}"),
-        types.InlineKeyboardButton(text="Set One Time Fees", callback_data=f"fees_p_{chat_id}"),
-    )
-    markup.add(
-        types.InlineKeyboardButton(text="Set Owner Wallet", callback_data=f"setownerwallet {chat_id}")
-    )
+    category = "❌ Not Set"
+    if "category" in group_info: category = group_info['category']
+
+    total_subs = DB['memberships'].count_documents({"chat_id": int(chat_id)})
 
     text_to_send = f"""
-Owner Wallet: <code>{owner_info['owner_wallet']}</code>
-Monthly Fees: <code>{group_info['fees']['monthly']}</code>
-One Time Fees: <code>{group_info['fees']['permanent']}</code>
+<i>Welcome to your $TTN Private Community Control Panel.</i>
+
+<b>👥 Community Details:</b>
+<i>• Group Name:|</i> {group_info['name']}
+<i>• Category:|</i> {category}
+<i>• Total Subscribers:|</i> {total_subs}
+
+<b>📊 Finance:</b>
+<i>• Current Monthly Fee:|</i> ${group_info['fees']['monthly']}
+<i>• Current Entry Fee:|</i><code> ${group_info['fees']['permanent'] if group_info['fees']['permanent'] else "❌ Not Set"} </code>
+<i>• Total Earned:|</i> ${group_info['total_earn']}
+
+<b>💵 Current Owner Wallets:</b>
+<i>• Bep-20:|</i> <code>{owner_info['owner_wallet'] if "owner_wallet" in owner_info else "❌ Not Set"}</code>
     """
 
-    bot.send_message(message.chat.id, "Back to settings", reply_markup=types.ReplyKeyboardRemove())
     bot.send_message(
         message.chat.id,
         text=text_to_send,
         parse_mode='HTML',
-        reply_markup=markup
+        reply_markup=keyboards.settingPrivateMarkup(chat_id)
     )
 
 def changeStart(message: types.CallbackQuery, bot: TeleBot):
