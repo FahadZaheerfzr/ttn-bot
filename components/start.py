@@ -81,7 +81,7 @@ def start(message: types.Message, bot: TeleBot):
 <b>💵 Wallet Balance:</b> 
 <i>• BNB:|</i> {round(bnb_balance, 4)}
 <i>• TTN:|</i> {ttn_balance}
-<i>• BUSD:|</i> {busd_balance}
+<i>• USDT:|</i> {busd_balance}
     """
 
     bot.reply_to(
@@ -153,7 +153,7 @@ def startNoReply(message: types.Message, bot: TeleBot):
 <b>💵 Wallet Balance:</b> 
 <i>• BNB:|</i> {round(bnb_balance, 4)}
 <i>• TTN:|</i> {ttn_balance}
-<i>• BUSD:|</i> {busd_balance}
+<i>• USDT:|</i> {busd_balance}
     """
 
     bot.send_message(

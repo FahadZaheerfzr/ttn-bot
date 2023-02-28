@@ -72,7 +72,7 @@ def buyPlan(message: types.CallbackQuery, bot: TeleBot):
 __
 <i>• Amount in BNB:|</i> {round(info['fees'][payment_type] / prices['bnb_price'], 4)}
 <i>• Amount in TTN:|</i> {round(info['fees'][payment_type] / prices['ttn_price'], 4)}
-<i>• Amount in BUSD:|</i> {round(info['fees'][payment_type] / 1, 4)}
+<i>• Amount in USDT:|</i> {round(info['fees'][payment_type] / 1, 4)}
 __
 *The prices of certain Cryptocurrencies might change when a transaction is delayed due the volatility of the markets.
 
@@ -83,7 +83,7 @@ __
 <b>Balances</b>
 <i>BNB:</i> {round(bnb_balance, 4)}
 <i>TTN:</i> {ttn_balance}
-<i>BUSD:</i> {busd_balance}
+<i>USDT:</i> {busd_balance}
     """
 
     bot.edit_message_text(

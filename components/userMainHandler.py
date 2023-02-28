@@ -275,7 +275,7 @@ def walletHandler(message: types.CallbackQuery, bot: TeleBot):
 
 <i>• BNB:|</i> {round(bnb_balance, 4)}
 <i>• TTN:|</i> {ttn_balance}
-<i>• BUSD:|</i> {busd_balance}
+<i>• USDT:|</i> {busd_balance}
     """
 
     bot.send_message(
