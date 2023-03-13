@@ -39,6 +39,8 @@ bot.register_callback_query_handler(portal.portalStart, func= lambda message: me
 def my_chat_m(message: types.ChatMemberUpdated):
     old = message.old_chat_member
     new = message.new_chat_member
+    if message.chat.type == "private":
+        return  # Ignore private chats
     if new.status == "member":
         bot.send_message(message.chat.id,"This private community is not registered yet, please use /register to register your community. Once registered, use /setting to configure the community settings.") # Welcome message, if bot was added to group
 
