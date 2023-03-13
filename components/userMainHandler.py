@@ -86,6 +86,7 @@ def notificationHandler(message: types.CallbackQuery, bot: TeleBot):
     text_to_send = f"""
 <i>🔔 Notification Settings</i>
 <i>Receive notifications when a subscription period ends.</i>
+
 <i>• Telegram Notifications: </i> {"✅ Unmuted" if "tg_not" in userInfo else "🔇Muted"}
 <i>• E-mail Notifications: </i> {"✅ Unmuted" if "email_not" in userInfo else "🔇Muted"}
 
@@ -211,7 +212,7 @@ def communitiesHandler(message: types.CallbackQuery, bot: TeleBot):
             text="🔙 Back To Menu", callback_data="main_backToMenu"),
     )
 
-    if communities:
+    if not communities:
         text_to_send = f"""
             <i>You currently don't have private communities. Add the bot to your private community and configure the chat.</i>
             """
@@ -271,7 +272,7 @@ def walletHandler(message: types.CallbackQuery, bot: TeleBot):
 <i>Deposit funds to enter private communities. Keep in mind that you always leave some BNB Bep-20 in your wallet in order to do transactions on the blockchain. (Gas fee)
 ❌ Deposit only.
 </i>
-<i>• 💵 Bep-20 Wallet:|</i> {userInfo['address']}
+<i>• 💵 Bep-20 Wallet:|</i> <code> {userInfo['address']} </code>
 
 <i>• BNB:|</i> {round(bnb_balance, 4)}
 <i>• TTN:|</i> {ttn_balance}

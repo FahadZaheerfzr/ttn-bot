@@ -163,8 +163,8 @@ def groupNameHandler(message: types.CallbackQuery, bot: TeleBot):
         return bot.reply_to(message, "You are not admin!")
 
     text_to_send = f"""
-<b>Current Group Name: {group_info["name"]}</b> 
-<b>Enter the name of your community below. This data is saved for our website search engine in which communities and fans are able to locate and indentify your private Group: </b>
+<b>Current Group Name:</b> <code> {group_info["name"]} </code>
+<i>Enter the name of your community below. This data is saved for our website search engine in which communities and fans are able to locate and indentify your private Group: </i>
 
     """
     bot.send_message(message.from_user.id, text_to_send,

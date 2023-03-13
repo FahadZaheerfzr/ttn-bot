@@ -68,22 +68,12 @@ def buyPlan(message: types.CallbackQuery, bot: TeleBot):
     text_to_send = f"""
 <b>Method accepted, Invoice Generated.
 {"🗓 Monthly Fee" if payment_type == "monthly" else "🎉 One Time Entry Fee"} :| ${info['fees'][payment_type]}</b>
-
 __
 <i>• Amount in BNB:|</i> {round(info['fees'][payment_type] / prices['bnb_price'], 4)}
 <i>• Amount in TTN:|</i> {round(info['fees'][payment_type] / prices['ttn_price'], 4)}
 <i>• Amount in USDT:|</i> {round(info['fees'][payment_type] / 1, 4)}
 __
 *The prices of certain Cryptocurrencies might change when a transaction is delayed due the volatility of the markets.
-
-
-<b>Wallet Info</b>
-<i>Address:</i> {user_info['address']}
-
-<b>Balances</b>
-<i>BNB:</i> {round(bnb_balance, 4)}
-<i>TTN:</i> {ttn_balance}
-<i>USDT:</i> {busd_balance}
     """
 
     bot.edit_message_text(

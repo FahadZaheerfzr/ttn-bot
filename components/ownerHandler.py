@@ -108,13 +108,13 @@ BOT STATUS:
 • <i>24 Hour Bot Volume:|</i> $ <b>{statistic["bot_volume"]}</b>
 • <i>Total BNB paid out:|</i> <b>{statistic["total_bnb_paid"]} BNB</b>
 • <i>Total TTN paid out:|</i> <b>{statistic["total_ttn_paid"]} TTN</b>
-• <i>Total BUSD Paid out:|</i> <b>{statistic["total_busd_paid"]} BUSD</b>
+• <i>Total USDT Paid out:|</i> <b>{statistic["total_busd_paid"]} USDT</b>
 
 <b>📈 TeleTreon Finances:</b>
 • <i>Total Earned 4% Fees:|</i> $ <b>{statistic["total_fee_earned"]}</b>
 • <i>Total BNB Earned:|</i> <b>{statistic["total_bnb_earned"]} BNB</b>
 • <i>Total TTN Earned:|</i> <b>{statistic["total_ttn_earned"]} TTN</b>
-• <i>Total BUSD Earned:|</i> <b>{statistic["total_busd_earned"]} BUSD</b>
+• <i>Total USDT Earned:|</i> <b>{statistic["total_busd_earned"]} USDT</b>
 
 <b>🗂 Total Amount of Categories:</b>
 • <i>Business:|</i> <b>{statistic["business"]}</b> 
