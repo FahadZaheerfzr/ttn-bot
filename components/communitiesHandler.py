@@ -41,7 +41,7 @@ def middlewareHandler(message: types.CallbackQuery, bot: TeleBot):
 <i>Welcome to your $TTN Private Community Control Panel.</i>
 
 <b>👥 Community Details:</b>
-<i>• Group Name:|</i> {group_info['name']}
+<i>• Name:|</i> {group_info['name']}
 <i>• Category:|</i> {category}
 <i>• Total Subscribers:|</i> {total_subs}
 
@@ -92,7 +92,7 @@ def categoryHandler(message: types.CallbackQuery, bot: TeleBot):
 
     text_to_send = f"""
 <b>👥 Community Details:</b>
-<i>• Group Name:|</i> {group_info['name']}
+<i>• Name:|</i> {group_info['name']}
 <i>• Category:|</i> {category}
 
 
@@ -163,7 +163,7 @@ def groupNameHandler(message: types.CallbackQuery, bot: TeleBot):
         return bot.reply_to(message, "You are not admin!")
 
     text_to_send = f"""
-<b>Current Group Name:</b> <code> {group_info["name"]} </code>
+<b>Current Name:</b> <code> {group_info["name"]} </code>
 <i>Enter the name of your community below. This data is saved for our website search engine in which communities and fans are able to locate and indentify your private Group: </i>
 
     """
@@ -177,7 +177,7 @@ def updateGroupNameHandlerCallback(message: types.Message, bot: TeleBot, args):
     # print(args)
     name = message.text
     if name.lower() == "cancel":
-        return start.start(message, bot)
+        return settings.settingCommunity(message, bot)
 
     if (len(name) < 5):
         bot.register_next_step_handler(
@@ -188,4 +188,5 @@ def updateGroupNameHandlerCallback(message: types.Message, bot: TeleBot, args):
     bot.set_chat_title(int(args), name)
     bot.send_message(
         message.chat.id, "<b>Group Name Updated Successfully</b>", parse_mode='HTML')
-    return start.start(message, bot)
+    
+    return settings.settingCommunity(message, bot)

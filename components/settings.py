@@ -48,7 +48,7 @@ def settingStart(message: types.Message, bot: TeleBot):
 <i>Welcome to your $TTN Private Community Control Panel.</i>
 
 <b>👥 Community Details:</b>
-<i>• Group Name:|</i> {group_info['name']}
+<i>• Name:|</i> {group_info['name']}
 <i>• Category:|</i> {category}
 <i>• Total Subscribers:|</i> {total_subs}
 
@@ -100,7 +100,7 @@ def settingCommunity(message: types.Message, bot: TeleBot):
 <i>Welcome to your $TTN Private Community Control Panel.</i>
 
 <b>👥 Community Details:</b>
-<i>• Group Name:|</i> {group_info['name']}
+<i>• Name:|</i> {group_info['name']}
 <i>• Category:|</i> {category}
 <i>• Total Subscribers:|</i> {total_subs}
 
