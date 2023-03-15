@@ -4,7 +4,7 @@ from components.database import DB
 import string, random
 from web3 import Web3
 import config
-from components import keyboards
+from components import settings
 
 
 web3 = Web3(Web3.HTTPProvider(config.RPC_ADDRESS))
@@ -30,12 +30,13 @@ One Time Fees: <code>{group_info['fees']['permanent']}</code>
     """
 
     bot.send_message(message.chat.id, "Back to settings", reply_markup=types.ReplyKeyboardRemove())
-    bot.send_message(
-        message.chat.id,
-        text=text_to_send,
-        parse_mode='HTML',
-        reply_markup=keyboards.settingPrivateMarkup(chat_id)
-    )
+    return settings.settingStart(message, bot)
+    # bot.send_message(
+    #     message.chat.id,
+    #     text=text_to_send,
+    #     parse_mode='HTML',
+    #     reply_markup=keyboards.settingPrivateMarkup(chat_id)
+    # )
 
 def changeWalletStart(message: types.CallbackQuery, bot: TeleBot):
     bot.delete_message(chat_id=message.from_user.id, message_id=message.message.id)

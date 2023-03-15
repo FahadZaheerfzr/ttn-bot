@@ -51,4 +51,4 @@ def portalStart(message: types.CallbackQuery, bot: TeleBot):
         reply_markup=types.ReplyKeyboardRemove()
     )
     bot.send_message(message.message.chat.id, "<i>Send the message above to a channel in order to create a public portal, or share the link with your community on other social media outlets.</i>", parse_mode="HTML")
-    backSettings(message, bot, chat_id)
+    return backSettings(message, bot, chat_id)
