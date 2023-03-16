@@ -28,9 +28,10 @@ Owner Wallet: <code>{owner_info['owner_wallet']}</code>
 Monthly Fees: <code>{group_info['fees']['monthly']}</code>
 One Time Fees: <code>{group_info['fees']['permanent']}</code>
     """
-
-    bot.send_message(message.chat.id, "Back to settings", reply_markup=types.ReplyKeyboardRemove())
     return settings.settingStart(message, bot)
+
+    #bot.send_message(message.chat.id, "Back to settings", reply_markup=types.ReplyKeyboardRemove())
+    #return settings.settingStart(message, bot)
     # bot.send_message(
     #     message.chat.id,
     #     text=text_to_send,
