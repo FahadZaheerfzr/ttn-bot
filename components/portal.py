@@ -50,5 +50,9 @@ def portalStart(message: types.CallbackQuery, bot: TeleBot):
         caption="Portal Link: {}".format(f"https://t.me/{bot.get_me().username}?start={chat_id}"),
         reply_markup=types.ReplyKeyboardRemove()
     )
-    bot.send_message(message.message.chat.id, "<i>Send the message above to a channel in order to create a public portal, or share the link with your community on other social media outlets.</i>", parse_mode="HTML")
-    return backSettings(message, bot, chat_id)
+    markup = types.InlineKeyboardMarkup()
+    markup.add(
+        types.InlineKeyboardButton(text="🔙 Back", callback_data=f"community_{chat_id}"),
+    )
+    bot.send_message(message.message.chat.id, "<i>Send the message above to a channel in order to create a public portal, or share the link with your community on other social media outlets.</i>", parse_mode="HTML",
+        reply_markup=markup)
