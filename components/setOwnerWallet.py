@@ -5,7 +5,7 @@ import string
 import random
 from web3 import Web3
 import config
-from components import settings
+from components import keyboards
 
 
 web3 = Web3(Web3.HTTPProvider(config.RPC_ADDRESS))
