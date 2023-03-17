@@ -54,7 +54,7 @@ def settingStart(message: types.Message, bot: TeleBot):
 
 <b>📊 Finance:</b>
 <i>• Current Monthly Fee:|</i> ${group_info['fees']['monthly']}
-<i>• Current Entry Fee:|</i><code> ${group_info['fees']['permanent'] if group_info['fees']['permanent'] else "❌ Not Set"}</code>
+<i>• Current Entry Fee:|</i> ${group_info['fees']['permanent'] if group_info['fees']['permanent'] else "❌ Not Set"}
 <i>• Total Earned:|</i> ${group_info['total_earn']}
 
 <b>💵 Current Owner Wallets:</b>
@@ -106,7 +106,7 @@ def settingCommunity(message: types.Message, bot: TeleBot):
 
 <b>📊 Finance:</b>
 <i>• Current Monthly Fee:|</i> ${group_info['fees']['monthly']}
-<i>• Current Entry Fee:|</i><code> ${group_info['fees']['permanent'] if group_info['fees']['permanent'] else "❌ Not Set"} </code>
+<i>• Current Entry Fee:|</i> ${group_info['fees']['permanent'] if group_info['fees']['permanent'] else "❌ Not Set"}
 <i>• Total Earned:|</i> ${group_info['total_earn']}
 
 <b>💵 Current Owner Wallets:</b>
