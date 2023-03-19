@@ -173,15 +173,15 @@ def groupNameHandler(message: types.CallbackQuery, bot: TeleBot):
         message.message, updateGroupNameHandlerCallback, bot, args=chat_id)
 
 
-def updateGroupNameHandlerCallback(message: types.Message, bot: TeleBot, args, chat_id):
+def updateGroupNameHandlerCallback(message: types.Message, bot: TeleBot, args):
     # print(args)
     name = message.text
     if name.lower() == "cancel":
-        return settings.settingCommunity(message, bot,  chat_id)
+        return settings.settingCommunity(message, bot,  args)
 
     if (len(name) < 5):
         bot.register_next_step_handler(
-            message, updateGroupNameHandlerCallback, bot, args,  chat_id)
+            message, updateGroupNameHandlerCallback, bot, args)
         return bot.send_message(message.chat.id, "<b>Invalid Group Name, Please Try Again</b>", parse_mode='HTML')
 
     DB['groups'].update_one({"_id": int(args)}, {"$set": {"name": name}})
@@ -189,4 +189,4 @@ def updateGroupNameHandlerCallback(message: types.Message, bot: TeleBot, args, c
     bot.send_message(
         message.chat.id, "<b>Group Name Updated Successfully</b>", parse_mode='HTML')
     
-    return settings.settingCommunity(message, bot, chat_id)
+    return settings.settingCommunity(message, bot, args)
