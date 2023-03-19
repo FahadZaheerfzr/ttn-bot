@@ -1,7 +1,7 @@
 from telebot import TeleBot
 from telebot import types
 from components.database import DB
-
+from components import keyboards
 
 
 def isNumber(num):
