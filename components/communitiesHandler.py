@@ -188,7 +188,6 @@ def updateGroupNameHandlerCallback(message: types.Message, bot: TeleBot, args):
     try:
         bot.set_chat_title(int(args), name)
     except:
-        bot.reply_to(message, "You are not admin!")
         return settings.settingCommunity(message, bot, args)
 
 
