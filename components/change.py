@@ -12,8 +12,8 @@ def isNumber(num):
         return False
 
 def backSettings(message: types.Message, bot: TeleBot, chat_id):
-    commmand, info = message.text.split(" ")
-    info_text, chat_id = info.split("_")
+    #commmand, info = message.text.split(" ")
+    #info_text, chat_id = info.split("_")
 
     group_info = DB['groups'].find_one({"_id": int(chat_id)})
     owner_info = DB['users'].find_one({"_id": group_info['owner']})
