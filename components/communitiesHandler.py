@@ -185,7 +185,14 @@ def updateGroupNameHandlerCallback(message: types.Message, bot: TeleBot, args):
         return bot.send_message(message.chat.id, "<b>Invalid Group Name, Please Try Again</b>", parse_mode='HTML')
 
     DB['groups'].update_one({"_id": int(args)}, {"$set": {"name": name}})
-    bot.set_chat_title(int(args), name)
+    try:
+        bot.set_chat_title(int(args), name)
+    except:
+        bot.reply_to(message, "You are not admin!")
+        return settings.settingCommunity(message, bot, args)
+
+
+
     bot.send_message(
         message.chat.id, "<b>Group Name Updated Successfully</b>", parse_mode='HTML')
     
