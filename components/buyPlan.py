@@ -41,9 +41,9 @@ def buyPlan(message: types.CallbackQuery, bot: TeleBot):
             "user_id": message.from_user.id,
             "is_completed": False
         })
-
+    
     prices = getLatestPrice.getInfo()
-
+    print(prices)
     markup = types.InlineKeyboardMarkup()
     markup.add(
         types.InlineKeyboardButton(text="BNB (Bep-20)", callback_data=f"pay {order_id} bnb"),
@@ -66,7 +66,7 @@ def buyPlan(message: types.CallbackQuery, bot: TeleBot):
         round(ttn_contract.functions.balanceOf(user_info['address']).call()/ 10 ** 9, 4),
         round(busd_contract.functions.balanceOf(user_info['address']).call()/ 10 ** 18, 4),
     )
-
+    print(prices)
     text_to_send = f"""
 <b>Method accepted, Invoice Generated.
 {"🗓 Monthly Fee" if payment_type == "monthly" else "🎉 One Time Entry Fee"} :| ${info['fees'][payment_type]}</b>
