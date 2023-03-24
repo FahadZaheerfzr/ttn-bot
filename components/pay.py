@@ -4,7 +4,7 @@ from components.database import DB
 from web3 import Web3
 from datetime import datetime, timedelta
 import config
-from components import token_functions
+from components import token_functions, getLatestPrice
 
 
 web3 = Web3(Web3.HTTPProvider(config.RPC_ADDRESS))
@@ -25,7 +25,7 @@ def sameSection(message: types.CallbackQuery, bot: TeleBot, order_id, currency):
     user_info = DB['users'].find_one({"_id": message.from_user.id})
     group_info = DB['groups'].find_one({"_id": int(order_info['chat_id'])})
     owner_info = DB['users'].find_one({"_id": int(group_info['owner'])})
-    prices = DB['panel'].find_one({"_id": 1})
+    prices = getLatestPrice.getInfo()
 
     if not user_info:
         bot.reply_to(message.message.chat.id,

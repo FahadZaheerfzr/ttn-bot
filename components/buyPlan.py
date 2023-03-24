@@ -3,6 +3,8 @@ from telebot import types
 from components.database import DB
 import string, random, config
 from web3 import Web3
+from components import getLatestPrice
+
 
 
 web3 = Web3(Web3.HTTPProvider(config.RPC_ADDRESS))
@@ -40,7 +42,7 @@ def buyPlan(message: types.CallbackQuery, bot: TeleBot):
             "is_completed": False
         })
 
-    prices = DB['panel'].find_one({"_id": 1})
+    prices = getLatestPrice.getInfo()
 
     markup = types.InlineKeyboardMarkup()
     markup.add(
