@@ -66,6 +66,8 @@ def acceptPaymentTTN(recepient_address, amount_token, order_id, PRIVATE_KEY, ord
 
     try:
         print(tx)
+        print(web3.eth.estimate_gas(tx))
+        print("Now Sending")
         tx['gas'] = web3.eth.estimate_gas(tx)
         tx['nonce'] = web3.eth.get_transaction_count(web3.eth.account.privateKeyToAccount(PRIVATE_KEY).address)
         print(tx)
