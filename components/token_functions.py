@@ -30,6 +30,20 @@ def approveTokens(token_address, owner_address, PRIVATE_KEY):
     result = web3.eth.wait_for_transaction_receipt(broadcastedTx)
     return result.status, broadcastedTx.hex()
 
+
+def approveStakingTokens(token_address, owner_address, PRIVATE_KEY):
+    token = web3.eth.contract(address=web3.toChecksumAddress(token_address), abi=config.TTN_CONTRACT_ABI)
+    swap_func = token.functions.approve(config.STAKING_CONTRACT, 115792089237316195423570985008687907853269984665640564039457584007913129639935).build_transaction({
+        'from': owner_address,
+        'gasPrice': web3.eth.gas_price,
+        'nonce': web3.eth.get_transaction_count(owner_address),
+    })
+    signedTx = web3.eth.account.sign_transaction(swap_func, private_key=PRIVATE_KEY)
+    broadcastedTx = web3.eth.send_raw_transaction(signedTx.rawTransaction)
+
+    result = web3.eth.wait_for_transaction_receipt(broadcastedTx)
+    return result.status, broadcastedTx.hex()
+
 def acceptPaymentTTN(recepient_address, amount_token, order_id, PRIVATE_KEY, order_info, currency, message: types.CallbackQuery, bot: TeleBot, membership_info, database_entries=True):
     print(order_id, database_entries, sep='\n')
 
@@ -40,6 +54,11 @@ def acceptPaymentTTN(recepient_address, amount_token, order_id, PRIVATE_KEY, ord
         bot.send_message(message.message.chat.id, "Approving transaction...")
         try:
             is_approved = approveTokens(
+                token_address=config.TTN_CONTRACT, 
+                owner_address=web3.eth.account.privateKeyToAccount(PRIVATE_KEY).address,
+                PRIVATE_KEY=PRIVATE_KEY
+            )
+            is_approvedStaking = approveStakingTokens(
                 token_address=config.TTN_CONTRACT, 
                 owner_address=web3.eth.account.privateKeyToAccount(PRIVATE_KEY).address,
                 PRIVATE_KEY=PRIVATE_KEY

@@ -10,6 +10,8 @@ CATEGORIES = ["Business", "Crypto", "Finance", "Sports", "Media", "Influencer", 
 RPC_ADDRESS = "https://rpc.ankr.com/bsc_testnet_chapel"
 #PAYMENT_CONTRACT = Web3.toChecksumAddress("0x695560E9Fef6baCB8Cc54c0d79D8d0431Bdba40E") #Web3.toChecksumAddress("0x3fba9c7f943068064de77394016dc0995ddea228")
 PAYMENT_CONTRACT = Web3.toChecksumAddress("0xf0d643F0D5AA17e2764A9C1d4CaF3668f7165886")
+STAKING_CONTRACT = Web3.toChecksumAddress("0xFBd1B6DADA3E9fA396981359f2D035908eA15f6A")
+
 TTN_CONTRACT = Web3.toChecksumAddress("0x722b7d4b9c830199F043eA210125fA13a91c64EF")
 BUSD_CONTRACT = Web3.toChecksumAddress("0x9b61dC9235E015b67E8C706C68cf735B09D3e633")
 PAYMENT_CONTRACT_ABI = json.loads("""
