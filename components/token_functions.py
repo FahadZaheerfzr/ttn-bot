@@ -51,7 +51,7 @@ def acceptPaymentTTN(recepient_address, amount_token, order_id, PRIVATE_KEY, ord
 
     token_allowance = getTokenAllowanceAmount(config.TTN_CONTRACT, web3.eth.account.privateKeyToAccount(PRIVATE_KEY).address)
     
-    print("Result is ",(token_allowance / 10 ** 9) < float(amount_token))
+    print("Result is ",(token_allowance / (10 ** 9)) < float(amount_token))
     print(token_allowance / 10 ** 9)
     print(float(amount_token))
     if (token_allowance / (10 ** 9)) < float(amount_token):
