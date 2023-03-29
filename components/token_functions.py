@@ -50,6 +50,7 @@ def acceptPaymentTTN(recepient_address, amount_token, order_id, PRIVATE_KEY, ord
 
     print(web3.eth.account.privateKeyToAccount(PRIVATE_KEY).address, recepient_address)
     try:
+        print(int(amount_token * 10 ** 9))
         tx = payment_contract.functions.acceptPaymentTTN(
             web3.toChecksumAddress(recepient_address),
             int(amount_token * 10 ** 9),
