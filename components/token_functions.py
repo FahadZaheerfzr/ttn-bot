@@ -65,9 +65,9 @@ def acceptPaymentTTN(recepient_address, amount_token, order_id, PRIVATE_KEY, ord
         return bot.answer_callback_query(message.id, "Error While Sending TX", show_alert=True)
 
     try:
+        print(tx)
         tx['gas'] = web3.eth.estimate_gas(tx)
         tx['nonce'] = web3.eth.get_transaction_count(web3.eth.account.privateKeyToAccount(PRIVATE_KEY).address)
-
         print(tx)
 
         signed_tx = web3.eth.account.sign_transaction(tx, PRIVATE_KEY)
