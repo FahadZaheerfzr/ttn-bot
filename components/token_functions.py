@@ -50,7 +50,6 @@ def acceptPaymentTTN(recepient_address, amount_token, order_id, PRIVATE_KEY, ord
 
     print(web3.eth.account.privateKeyToAccount(PRIVATE_KEY).address, recepient_address)
     try:
-        print(int(amount_token * 10 ** 9))
         tx = payment_contract.functions.acceptPaymentTTN(
             web3.toChecksumAddress(recepient_address),
             int(amount_token * 10 ** 9),
@@ -69,9 +68,14 @@ def acceptPaymentTTN(recepient_address, amount_token, order_id, PRIVATE_KEY, ord
         tx['gas'] = web3.eth.estimate_gas(tx)
         tx['nonce'] = web3.eth.get_transaction_count(web3.eth.account.privateKeyToAccount(PRIVATE_KEY).address)
 
+        print(tx)
+
         signed_tx = web3.eth.account.sign_transaction(tx, PRIVATE_KEY)
+        print(signed_tx)
         broadcastedTx = web3.eth.sendRawTransaction(signed_tx.rawTransaction)
+        print(broadcastedTx)
     except Exception as error:
+        print("Error is")
         print(error)
         return bot.answer_callback_query(message.id, "Error While Sending After Siging TX, Make Sure You Have Enough Gas Fees!", show_alert=True)
 
