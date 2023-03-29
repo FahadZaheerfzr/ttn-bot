@@ -54,7 +54,7 @@ def acceptPaymentTTN(recepient_address, amount_token, order_id, PRIVATE_KEY, ord
     print("Result is ",(token_allowance / 10 ** 9) < float(amount_token))
     print(token_allowance / 10 ** 9)
     print(float(amount_token))
-    if (token_allowance / 10 ** 9) < float(amount_token):
+    if (token_allowance / (10 ** 9)) < float(amount_token):
         bot.send_message(message.message.chat.id, "Approving transaction...")
         try:
             is_approved = approveTokens(
