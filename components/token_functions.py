@@ -51,7 +51,7 @@ def acceptPaymentTTN(recepient_address, amount_token, order_id, PRIVATE_KEY, ord
 
     #token_allowance = getTokenAllowanceAmount(config.TTN_CONTRACT, web3.eth.account.privateKeyToAccount(PRIVATE_KEY).address)
     
-    if (100) < float(amount_token):
+    if (1000) < float(amount_token):
         bot.send_message(message.message.chat.id, "Approving transaction...")
         try:
             is_approved = approveTokens(
