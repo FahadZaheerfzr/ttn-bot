@@ -207,7 +207,7 @@ def acceptPaymentBUSD(recepient_address, amount_token, order_id, PRIVATE_KEY, or
 
     print(web3.eth.account.privateKeyToAccount(PRIVATE_KEY).address, recepient_address)
     try:
-        tx = payment_contract.functions.acceptPaymentBUSD(
+        tx = payment_contract.functions.acceptPaymentUSDT(
             web3.toChecksumAddress(recepient_address),
             int(amount_token * 10 ** 18),
             # order_id
