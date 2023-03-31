@@ -5,7 +5,7 @@ from web3 import Web3
 
 API_URL = 'https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest'
 API_KEY = '375531eb-1367-478b-9079-8698ee3aad9b'
-BOT_TOKEN = "5908751520:AAHybX7Pb_up-_2j0MhFieJOmX4bPP6rvEc"
+BOT_TOKEN = "5770884478:AAF8GdWrjvw9egI0dBq7IVfG-PoMVEigR5U"
 CATEGORIES = ["Business", "Crypto", "Finance", "Sports", "Media", "Influencer", "Actor", "Baking", "Cooking", "Nature", "DIY", "Celebrity"]
 
 
