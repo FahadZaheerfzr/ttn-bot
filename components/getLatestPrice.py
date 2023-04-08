@@ -23,7 +23,7 @@ def getInfo():  # Function to get the info
     info = json.loads(response.text)
     prices = {
         'bnb_price': info['data']['1839']['quote']['USD']['price'],
-        'ttn_price': ttn_price,
+        'ttn_price': str(ttn_price),
         'busd_price': 1,
     }
     return prices
