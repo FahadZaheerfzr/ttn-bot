@@ -23,7 +23,7 @@ def getInfo():  # Function to get the info
     info = json.loads(response.text)
     prices = {
         'bnb_price': info['data']['1839']['quote']['USD']['price'],
-        'ttn_price': str(ttn_price),
+        'ttn_price': float(ttn_price),
         'busd_price': 1,
     }
     return prices
@@ -33,6 +33,3 @@ def getTTNPrice():
     response = requests.get("https://api.geckoterminal.com/api/v2/networks/bsc/pools/0xc89f587cfe28c7a7cddf24cb0e6a125083c68f9e")
     result = response.json()
     return result['data']['attributes']['base_token_price_usd']
-
-
-
