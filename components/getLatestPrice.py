@@ -30,6 +30,11 @@ def getInfo():  # Function to get the info
 
 
 def getTTNPrice():
-    response = requests.get("https://api.geckoterminal.com/api/v2/networks/bsc/pools/0xc89f587cfe28c7a7cddf24cb0e6a125083c68f9e")
-    result = response.json()
-    return result['data']['attributes']['base_token_price_usd']
+    try:
+        response = requests.get("https://api.coingecko.com/api/v3/simple/price?ids=teletreon&vs_currencies=usd")
+        result = response.json()
+        return result['teletreon']['usd']
+    except:
+        response = requests.get("https://api.geckoterminal.com/api/v2/networks/bsc/pools/0xc89f587cfe28c7a7cddf24cb0e6a125083c68f9e")
+        result = response.json()
+        return result['data']['attributes']['base_token_price_usd']
